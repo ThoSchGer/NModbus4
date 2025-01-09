@@ -13,7 +13,7 @@ namespace Modbus.IntegrationTests
             var listener = new TcpListener(ModbusMasterFixture.TcpHost, ModbusMasterFixture.Port);
             using (var slave = ModbusTcpSlave.CreateTcp(ModbusMasterFixture.SlaveAddress, listener))
             {
-                var slaveThread = new Thread(slave.Listen);
+                var slaveThread = slave.ListenAsync();
                 slaveThread.Start();
 
                 var client = new TcpClient(ModbusMasterFixture.TcpHost.ToString(), ModbusMasterFixture.Port);
@@ -33,7 +33,7 @@ namespace Modbus.IntegrationTests
             var listener = new TcpListener(ModbusMasterFixture.TcpHost, ModbusMasterFixture.Port);
             using (var slave = ModbusTcpSlave.CreateTcp(ModbusMasterFixture.SlaveAddress, listener))
             {
-                var slaveThread = new Thread(slave.Listen);
+                var slaveThread = slave.ListenAsync();
                 slaveThread.Start();
 
                 var client = new TcpClient(ModbusMasterFixture.TcpHost.ToString(), ModbusMasterFixture.Port);
